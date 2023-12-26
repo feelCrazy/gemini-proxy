@@ -45,7 +45,10 @@ export default async function handleRequest(request: NextRequest & { nextUrl?: U
   const response = await fetch(url, {
     body: request.body,
     method: request.method,
-    headers,
+     headers: {
+      ...headers,
+      "Content-Type": "application/json",
+    },
   });
 
   const responseHeaders = {
