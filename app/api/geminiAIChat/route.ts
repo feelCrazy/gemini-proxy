@@ -6,6 +6,8 @@ import { BodyData } from "@/types"
 const API_KEY = process.env.API_KEY || ""
 const genAI = new GoogleGenerativeAI(API_KEY)
 
+export const runtime = "edge"
+
 export async function POST(request: Request) {
   const { history, prompt, ...rest } = (await request.json()) as BodyData
 
