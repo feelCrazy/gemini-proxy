@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /admin
+Disallow: /private
+Disallow: /secret-page
+Disallow: /api
+Disallow: /static
+Disallow: /_next
+Disallow: /public
+Disallow: /_error
+Disallow: /404
+Disallow: /500
