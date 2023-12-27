@@ -6,7 +6,16 @@ import { BodyData } from "@/types"
 const API_KEY = process.env.API_KEY || ""
 const genAI = new GoogleGenerativeAI(API_KEY)
 export const runtime = "edge"
-
+export const preferredRegion = [
+  "cle1",
+  "iad1",
+  "pdx1",
+  "sfo1",
+  "sin1",
+  "syd1",
+  "hnd1",
+  "kix1",
+]
 function calculateBase64Size(base64String: string) {
   const padding = base64String.endsWith("==")
     ? 2

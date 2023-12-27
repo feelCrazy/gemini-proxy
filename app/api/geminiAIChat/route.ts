@@ -7,6 +7,16 @@ const API_KEY = process.env.API_KEY || ""
 const genAI = new GoogleGenerativeAI(API_KEY)
 
 export const runtime = "edge"
+export const preferredRegion = [
+  "cle1",
+  "iad1",
+  "pdx1",
+  "sfo1",
+  "sin1",
+  "syd1",
+  "hnd1",
+  "kix1",
+]
 
 const headers = {
   "Access-Control-Allow-Origin": "*",
@@ -52,8 +62,6 @@ export async function POST(request: Request) {
     const stream = GoogleGenerativeAIStream(res)
     return new StreamingTextResponse(stream, { headers })
   } catch (error) {
-    console.log(">>>eeee", error)
-
     return NextResponse.json(
       {
         data: String(error),
