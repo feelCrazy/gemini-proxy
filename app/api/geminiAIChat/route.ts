@@ -8,6 +8,12 @@ const genAI = new GoogleGenerativeAI(API_KEY)
 
 export const runtime = "edge"
 
+const headers = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization",
+}
+
 export async function POST(request: Request) {
   const { history, prompt, ...rest } = (await request.json()) as BodyData
 
@@ -18,6 +24,7 @@ export async function POST(request: Request) {
       },
       {
         status: 400,
+        headers,
       }
     )
   }
@@ -28,6 +35,7 @@ export async function POST(request: Request) {
       },
       {
         status: 400,
+        headers,
       }
     )
   }
@@ -42,7 +50,7 @@ export async function POST(request: Request) {
   try {
     const res = await chat.sendMessageStream(prompt)
     const stream = GoogleGenerativeAIStream(res)
-    return new StreamingTextResponse(stream)
+    return new StreamingTextResponse(stream, { headers })
   } catch (error) {
     console.log(">>>eeee", error)
 
@@ -52,6 +60,7 @@ export async function POST(request: Request) {
       },
       {
         status: 400,
+        headers,
       }
     )
   }
