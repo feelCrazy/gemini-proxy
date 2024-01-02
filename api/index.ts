@@ -9,17 +9,8 @@ const genAI = new GoogleGenerativeAI(API_KEY)
 
 export const config = {
   runtime: "edge",
+  regions: ["cle1", "iad1", "pdx1", "sfo1", "sin1", "syd1", "hnd1", "kix1"],
 }
-export const preferredRegion = [
-  "cle1",
-  "iad1",
-  "pdx1",
-  "sfo1",
-  "sin1",
-  "syd1",
-  "hnd1",
-  "kix1",
-]
 
 const app = new Hono().basePath("/api")
 app.use("*", cors({ origin: "*", allowHeaders: ["Content-Type"] }))
