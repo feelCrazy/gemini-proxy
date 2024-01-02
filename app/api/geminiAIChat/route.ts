@@ -6,7 +6,9 @@ import { BodyData } from "@/types"
 const API_KEY = process.env.API_KEY || ""
 const genAI = new GoogleGenerativeAI(API_KEY)
 
+export const dynamic = "force-dynamic"
 export const runtime = "edge"
+
 export const preferredRegion = [
   "cle1",
   "iad1",
