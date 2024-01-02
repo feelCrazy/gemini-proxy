@@ -12,11 +12,10 @@ export const config = {
   regions: ["cle1", "iad1", "pdx1", "sfo1", "sin1", "syd1", "hnd1", "kix1"],
 }
 
-const app = new Hono()
+const app = new Hono().basePath("/api")
 app.use("*", cors({ origin: "*", allowHeaders: ["Content-Type"] }))
-app.get("/", (c) => c.text("Hello, World!"))
 
-app.post("/api/geminiChat", async (c) => {
+app.post("/geminiChat", async (c) => {
   const { history, prompt, ...rest } = await c.req.json()
   const model = genAI.getGenerativeModel({
     model: "gemini-pro",
@@ -34,7 +33,7 @@ app.post("/api/geminiChat", async (c) => {
   }
 })
 
-app.post("/api/geminiChatWithImage", async (c) => {
+app.post("/geminiChatWithImage", async (c) => {
   const { history, prompt, ...rest } = await c.req.json()
   const model = genAI.getGenerativeModel({
     model: "gemini-pro",
