@@ -3,6 +3,7 @@ import { handle } from "hono/vercel"
 import { GoogleGenerativeAI } from "@google/generative-ai"
 import { GoogleGenerativeAIStream, StreamingTextResponse } from "ai"
 import { cors } from "hono/cors"
+import { BodyData } from "../types"
 
 const API_KEY = process.env.API_KEY || ""
 const genAI = new GoogleGenerativeAI(API_KEY)
@@ -16,7 +17,10 @@ const app = new Hono().basePath("/api")
 app.use("*", cors({ origin: "*", allowHeaders: ["Content-Type"] }))
 
 app.post("/geminiChat", async (c) => {
-  const { history, prompt, ...rest } = await c.req.json()
+  const { history, prompt, ...rest } = (await c.req.json()) as Omit<
+    BodyData,
+    "imageBase"
+  >
   const model = genAI.getGenerativeModel({
     model: "gemini-pro",
     ...rest,
@@ -34,14 +38,17 @@ app.post("/geminiChat", async (c) => {
 })
 
 app.post("/geminiChatWithImage", async (c) => {
-  const { history, prompt, ...rest } = await c.req.json()
+  const { prompt, imageBase, ...rest } = (await c.req.json()) as Omit<
+    BodyData,
+    "history"
+  >
   const model = genAI.getGenerativeModel({
     model: "gemini-pro",
     ...rest,
   })
 
   try {
-    const res = await model.generateContentStream([prompt])
+    const res = await model.generateContentStream([prompt, ...imageBase])
     const stream = GoogleGenerativeAIStream(res)
     return new StreamingTextResponse(stream)
   } catch (error) {
