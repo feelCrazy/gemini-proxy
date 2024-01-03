@@ -43,7 +43,7 @@ app.post("/geminiChatWithImage", async (c) => {
     "history"
   >
   const model = genAI.getGenerativeModel({
-    model: "gemini-pro",
+    model: "gemini-pro-vision",
     ...rest,
   })
 
