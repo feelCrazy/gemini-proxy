@@ -30,6 +30,11 @@ app.post("/geminiChat", async (c) => {
 
   return stream(c, (stream) => stream.pipe(result.toDataStream({ data })));
 });
+app.get("/", async (c) => {
+  return c.json({
+    data: "ok",
+  });
+});
 
 // app.post("/geminiChatWithImage", async (c) => {
 //   const { prompt, imageBase, ...rest } = (await c.req.json()) as Omit<
