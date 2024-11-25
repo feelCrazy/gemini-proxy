@@ -35,7 +35,7 @@ app.post("/geminiChat", async (c) => {
   return stream(c, (stream) => stream.pipe(result.toDataStream({ data })));
 });
 
-app.get("/verison", async (c) => {
+app.get("/version", async (c) => {
   return c.json({
     data: "ok",
   });
