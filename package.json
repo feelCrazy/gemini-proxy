@@ -1,8 +1,8 @@
 {
+  "name": "gemini-proxy",
   "type": "module",
   "scripts": {
-    "start": "vercel dev",
-    "deploy": "vercel"
+    "dev": "bun run --hot src/index.ts"
   },
   "dependencies": {
     "@ai-sdk/google": "^1.0.3",
@@ -11,6 +11,6 @@
     "hono": "^4.6.12"
   },
   "devDependencies": {
-    "vercel": "^39.1.1"
+    "@types/bun": "latest"
   }
 }
