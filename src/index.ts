@@ -11,7 +11,7 @@ const app = new Hono().basePath("/api")
 app.use("*", cors({ origin: "*", allowHeaders: ["Content-Type"] }))
 
 app.get("/", (c) => {
-  return c.json({ message: "Congrats! You've deployed Hono to Vercel" })
+  return c.json({ message: "Congrats! You've deployed Hono to VPS" })
 })
 
 app.post("/geminiChat", async (c) => {
