@@ -6,10 +6,10 @@
     "start": "bun  src/index.ts"
   },
   "dependencies": {
-    "@ai-sdk/google": "^1.0.3",
-    "ai": "^4.0.4",
-    "dotenv": "^16.4.5",
-    "hono": "^4.6.12"
+    "@ai-sdk/google": "^1.0.15",
+    "ai": "^4.0.33",
+    "dotenv": "^16.4.7",
+    "hono": "^4.6.16"
   },
   "devDependencies": {
     "@types/bun": "latest"
